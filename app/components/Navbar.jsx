@@ -4,9 +4,10 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 function AuthButton(){
-    const {data:session} = useSession;
+    const {data:session} = useSession();
 
     if(session){
+        console.log(session?.user?.name)
         return(
             <>
                 {session?.user?.name}
@@ -17,7 +18,7 @@ function AuthButton(){
 
     return(
         <>
-            Mot Signed In
+            Not Signed In
             <button className="m-5 p-2 bg-blue-500 rounded-full text-black font-bold" onClick={() => signIn()}>Sign In</button>
         </>
     )
